@@ -29,13 +29,6 @@ def move(We, them, my_history, their_history, my_score, their_score, result):
         return random.choice ('b', 'c')
         
         
-def strategy_2(self, opponent):
-
-    
-    
-
-
-answer = random.choice(['b', 'c'])
 def test_move(my_history, their_history, my_score, their_score, result):
     '''calls move(my_history, their_history, my_score, their_score)
     from this module. Prints error if return value != result.
