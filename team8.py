@@ -5,11 +5,13 @@
 #     strategy_description: a string
 #     move: A function that returns 'c' or 'b'
 ####
+team_name = 'InsertNameHere' # Only 10 chars displayed.
+strategy_name = 'Collude until betrayed'
+strategy_description = '''\`
+Collude first round. Collude, unless betrayed; then always betray. But Collude 10 percent of the time.'''
 
-team_name = 'The name the team gives to itself' # Only 10 chars displayed.
-strategy_name = 'The name the team gives to this strategy'
-strategy_description = 'How does this strategy decide?'
-    
+import random    
+            
 def move(my_history, their_history, my_score, their_score):
     ''' Arguments accepted: my_history, their_history are strings.
     my_score, their_score are ints.
@@ -25,8 +27,13 @@ def move(my_history, their_history, my_score, their_score):
     
     # Analyze my_history and their_history and/or my_score and their_score.
     # Decide whether to return 'c' or 'b'.
-    
-    return 'c'
+    if random.random()<0.1: # 10% of the other rounds
+        return 'c'
+    elif 'b' in their_history:
+        return 'b'      
+    else:
+        return 'c'
+
 
     
 def test_move(my_history, their_history, my_score, their_score, result):
