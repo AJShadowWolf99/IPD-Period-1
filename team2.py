@@ -10,25 +10,21 @@ import random
 team_name = 'Team Alpha' # Only 10 chars displayed.
 strategy_name = 'Shenanaguens, '
 strategy_description = 'the strategy will choose wether to collude or betray at random, then the next move will go based off of what they did in the previouse round.then if we havent been betrayed in the last 20 rounds then collude. then if the opponent has betrayed for more than three then we betray, if nothing else it will pick at random. ' 
-def move(We, them, my_history, their_history, my_score, their_score, result):
+def strategy_1(my_history, their_history, my_score, their_score, result):
 
-    if not them.history:
+    if not their_history:
         return 'c'
 
-    if len(them.history) > (We.tournament_attributes['length'] - 3):
-        return 'b'
-
-    if len(them.history) < 180:
-        if len(them.history) > 6:
-            if 'b' not in them.history[:7]:
+    if len(their_history) < 180:
+        if len(their_history) > 6:
+            if 'b' not in their_history[:7]:
                  return 'c'
-
-    if them.defections > 3:
-        return 'd'
     else:
         return random.choice ('b', 'c')
         
-        
+
+
+answer = random.choice(['b', 'c'])
 def test_move(my_history, their_history, my_score, their_score, result):
     '''calls move(my_history, their_history, my_score, their_score)
     from this module. Prints error if return value != result.
@@ -65,4 +61,4 @@ if __name__ == '__main__':
               # move('bbb', 'ccc', 0, 0) returns 'b'.
               my_score=0, 
               their_score=0,
-              result='b') 
+              result='b')             
